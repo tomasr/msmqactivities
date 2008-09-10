@@ -1,0 +1,18 @@
+﻿<SequentialWorkflowActivity x:Class="TestApp.SampleWorkflow2" x:Name="SampleWorkflow2" xmlns:ns0="clr-namespace:Winterdom.Workflow.Activities.Msmq;Assembly=Winterdom.Workflow.Activities.Msmq, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<TransactionScopeActivity x:Name="SendScope">
+		<TransactionScopeActivity.TransactionOptions>
+			<WorkflowTransactionOptions TimeoutDuration="00:00:30" IsolationLevel="Serializable" />
+		</TransactionScopeActivity.TransactionOptions>
+		<ns0:MsmqSendActivity x:Name="SendMessage" Queue="{ActivityBind SampleWorkflow2,Path=QUEUE}" Label="{ActivityBind SampleWorkflow2,Path=LabelToSend}" IsTransactionalQueue="True">
+			<ns0:MsmqSendActivity.MessageToSend>
+				<ActivityBind Name="SampleWorkflow2" Path="CustomerToSend" />
+			</ns0:MsmqSendActivity.MessageToSend>
+		</ns0:MsmqSendActivity>
+	</TransactionScopeActivity>
+	<ns0:MsmqReceiveActivity x:Name="ReceiveMessage" Queue="{ActivityBind SampleWorkflow2,Path=QUEUE}" MessageType="{x:Type TestApp.Customer}" ns0:MsmqBaseReceiveActivity.Label="{ActivityBind SampleWorkflow2,Path=LabelReceived}">
+		<ns0:MsmqBaseReceiveActivity.MessageReceived>
+			<ActivityBind Name="SampleWorkflow2" Path="CustomerReceived" />
+		</ns0:MsmqBaseReceiveActivity.MessageReceived>
+	</ns0:MsmqReceiveActivity>
+	<CodeActivity x:Name="codeActivity1" ExecuteCode="MessageReceived_ExecuteCode" />
+</SequentialWorkflowActivity>

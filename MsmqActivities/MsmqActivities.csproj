@@ -1,0 +1,101 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1663FFA9-E46B-41C7-B74A-47E15E0C1CC8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Winterdom.Workflow.Activities.Msmq</RootNamespace>
+    <AssemblyName>Winterdom.Workflow.Activities.Msmq</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Workflow.Activities, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Workflow.ComponentModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Workflow.Runtime, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NullMsmqSubscriptionPersistenceService.cs" />
+    <Compile Include="SqlMsmqSubscriptionPersistenceService.cs" />
+    <Compile Include="IMsmqSubscriptionPersistenceService.cs" />
+    <Compile Include="MsmqBaseReceiveActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MsmqDirectReceiveActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TraceUtil.cs" />
+    <Compile Include="MessageDataEventArgs.cs" />
+    <Compile Include="MsmqSubscription.cs" />
+    <Compile Include="Design\MsmqSendActivityDesigner.cs" />
+    <Compile Include="Design\MsmqActivityToolboxItem.cs">
+    </Compile>
+    <Compile Include="Design\TypedPropertyDescriptor.cs" />
+    <Compile Include="Design\MsmqActivityDesignerTheme.cs" />
+    <Compile Include="Design\MsmqReceiveActivityDesigner.cs" />
+    <Compile Include="Design\SRDescriptionAttribute.cs" />
+    <Compile Include="MsmqListenerService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Design\MsmqActivityDesigner.cs" />
+    <Compile Include="MessageFormatterKind.cs" />
+    <Compile Include="MsmqReceiveActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MsmqSendActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\MsmqSendActivityValidator.cs" />
+    <Compile Include="Validation\MsmqReceiveActivityValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\MessageQueuing.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\MsmqSubscriptions.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

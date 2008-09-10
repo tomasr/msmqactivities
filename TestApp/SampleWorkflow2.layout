@@ -1,0 +1,8 @@
+﻿<StateMachineWorkflowDesigner Name="SampleWorkflow2" xmlns:ns0="clr-namespace:System.Drawing;Assembly=System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<StateMachineWorkflowDesigner.Location>
+		<ns0:Point X="30" Y="30" />
+	</StateMachineWorkflowDesigner.Location>
+	<StateMachineWorkflowDesigner.Size>
+		<ns0:Size Width="822" Height="606" />
+	</StateMachineWorkflowDesigner.Size>
+</StateMachineWorkflowDesigner>
